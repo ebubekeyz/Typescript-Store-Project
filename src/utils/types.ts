@@ -5,7 +5,7 @@ export type ProductsResponse = {
 
 export type Product = {
   attributes: {
-    _id: string;
+    _id: any;
     category: string;
     company: string;
     createdAt: string;
@@ -53,7 +53,7 @@ export type SingleProductResponse = {
 
 export type CartItem = {
   cartID: string;
-  productID: number;
+  productID: any;
   image: string;
   title: string;
   price: string;

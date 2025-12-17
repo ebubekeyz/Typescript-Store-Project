@@ -12,7 +12,7 @@ import { customFetch } from "@/utils";
 import { toast } from "@/components/ui/use-toast";
 import { type ReduxStore } from "@/store";
 import { loginUser } from "@/features/user/userSlice";
-import { useAppDispatch } from "@/hooks";
+
 import { AxiosResponse } from "axios";
 
 export const action =
@@ -39,21 +39,6 @@ export const action =
   };
 
 function Login() {
-  // const loginAsGuestUser = async (): Promise<void> => {
-  //   try {
-  //     const response: AxiosResponse = await customFetch.post('/auth/local', {
-  //       email: 'test@test.com',
-  //       password: 'secret',
-  //     });
-  //     const username = response.data.user.username;
-  //     const jwt = response.data.jwt;
-  //     dispatch(loginUser({ username, jwt }));
-  //     navigate('/');
-  //   } catch (error) {
-  //     console.log(error);
-  //     toast({ description: 'Login Failed' });
-  //   }
-  // };
   return (
     <section className="h-screen grid place-items-center">
       <Card className="w-96 bg-muted">

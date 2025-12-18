@@ -1,24 +1,23 @@
 export type ProductsResponse = {
-  data: Product[];
+  attributes: Product[];
   meta: ProductsMeta;
 };
 
 export type Product = {
-  attributes: {
-    _id: any;
-    category: string;
-    company: string;
-    createdAt: string;
-    description: string;
-    featured: boolean;
-    image: string;
-    price: string;
-    publishedAt: string;
-    shipping: boolean;
-    title: string;
-    updatedAt: string;
-    colors: string[];
-  };
+  _id: string;
+  category: string;
+  company: string;
+  createdAt: string;
+  description: string;
+  featured: boolean;
+  image: string;
+  price: string;
+  publishedAt: string;
+  user: string;
+  shipping: boolean;
+  title: string;
+  updatedAt: string;
+  colors: string[];
 };
 
 export type ProductsMeta = {
@@ -47,13 +46,13 @@ export type Params = {
 export type ProductsResponseWithParams = ProductsResponse & { params: Params };
 
 export type SingleProductResponse = {
-  data: Product;
+  attributes: Product;
   meta: {};
 };
 
 export type CartItem = {
   cartID: string;
-  productID: any;
+  productID: string;
   image: string;
   title: string;
   price: string;
@@ -81,17 +80,15 @@ export type Checkout = {
 };
 
 export type Order = {
-  id: number;
-  attributes: {
-    address: string;
-    cartItems: CartItem[];
-    createdAt: string;
-    name: string;
-    numItemsInCart: number;
-    orderTotal: string;
-    publishedAt: string;
-    updatedAt: string;
-  };
+  _id: string;
+  address: string;
+  cartItems: CartItem[];
+  createdAt: string;
+  name: string;
+  numItemsInCart: number;
+  orderTotal: string;
+  publishedAt: string;
+  updatedAt: string;
 };
 
 export type OrdersMeta = {
@@ -99,6 +96,6 @@ export type OrdersMeta = {
 };
 
 export type OrdersResponse = {
-  data: Order[];
+  order: Order[];
   meta: OrdersMeta;
 };

@@ -24,9 +24,8 @@ export const loader: LoaderFunction = async ({
 };
 
 function SingleProduct() {
-  const { data: product } = useLoaderData() as SingleProductResponse;
-  const { image, title, price, description, colors, company, _id } =
-    product.attributes;
+  const { attributes: product } = useLoaderData() as SingleProductResponse;
+  const { image, title, price, description, colors, company, _id } = product;
   const dollarsAmount = formatAsDollars(price);
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);

@@ -3,12 +3,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { formatAsDollars, type ProductsResponse } from "@/utils";
 
 function ProductsGrid() {
-  const { data: products } = useLoaderData() as ProductsResponse;
+  const { attributes: products } = useLoaderData() as ProductsResponse;
 
   return (
     <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => {
-        const { title, price, image, _id } = product.attributes;
+        const { title, price, image, _id } = product;
         const dollarsAmount = formatAsDollars(price);
         return (
           <Link to={`/products/${_id}`} key={_id}>

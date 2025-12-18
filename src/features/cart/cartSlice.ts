@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { type CartItem, type CartState } from '@/utils';
-import { toast } from '@/components/ui/use-toast';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { type CartItem, type CartState } from "@/utils";
+import { toast } from "@/components/ui/use-toast";
 
 const defaultState: CartState = {
   cartItems: [],
@@ -12,12 +12,12 @@ const defaultState: CartState = {
 };
 
 const getCartFromLocalStorage = (): CartState => {
-  const cart = localStorage.getItem('cart');
+  const cart = localStorage.getItem("cart");
   return cart ? JSON.parse(cart) : defaultState;
 };
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState: getCartFromLocalStorage(),
   reducers: {
     addItem: (state, action: PayloadAction<CartItem>) => {
@@ -28,16 +28,17 @@ const cartSlice = createSlice({
       } else {
         state.cartItems.push(newCartItem);
       }
+
       state.numItemsInCart += newCartItem.amount;
       state.cartTotal += Number(newCartItem.price) * newCartItem.amount;
       // state.tax = 0.1 * state.cartTotal;
       // state.orderTotal = state.cartTotal + state.shipping + state.tax;
       // localStorage.setItem('cart', JSON.stringify(state));
       cartSlice.caseReducers.calculateTotals(state);
-      toast({ description: 'Item added to cart' });
+      toast({ description: "Item added to cart" });
     },
     clearCart: () => {
-      localStorage.setItem('cart', JSON.stringify(defaultState));
+      localStorage.setItem("cart", JSON.stringify(defaultState));
       return defaultState;
     },
     removeItem: (state, action: PayloadAction<string>) => {
@@ -48,7 +49,7 @@ const cartSlice = createSlice({
       state.numItemsInCart -= cartItem.amount;
       state.cartTotal -= Number(cartItem.price) * cartItem.amount;
       cartSlice.caseReducers.calculateTotals(state);
-      toast({ description: 'Item removed from the cart' });
+      toast({ description: "Item removed from the cart" });
     },
     editItem: (
       state,
@@ -63,12 +64,12 @@ const cartSlice = createSlice({
       cartItem.amount = amount;
 
       cartSlice.caseReducers.calculateTotals(state);
-      toast({ description: 'Amount Updated' });
+      toast({ description: "Amount Updated" });
     },
     calculateTotals: (state) => {
       state.tax = 0.1 * state.cartTotal;
       state.orderTotal = state.cartTotal + state.shipping + state.tax;
-      localStorage.setItem('cart', JSON.stringify(state));
+      localStorage.setItem("cart", JSON.stringify(state));
     },
   },
 });

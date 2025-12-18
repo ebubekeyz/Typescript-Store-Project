@@ -1,12 +1,12 @@
-import { Filters, ProductsContainer, PaginationContainer } from '@/components';
+import { Filters, ProductsContainer, PaginationContainer } from "@/components";
 import {
   customFetch,
   type ProductsResponse,
   type ProductsResponseWithParams,
-} from '../utils';
-import { type LoaderFunction } from 'react-router-dom';
+} from "../utils";
+import { type LoaderFunction } from "react-router-dom";
 
-const url = '/products';
+const url = "/products";
 
 export const loader: LoaderFunction = async ({
   request,

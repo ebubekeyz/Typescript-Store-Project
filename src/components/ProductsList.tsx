@@ -3,12 +3,12 @@ import { Link, useLoaderData } from "react-router-dom";
 import { Card, CardContent } from "./ui/card";
 
 function ProductsList() {
-  const { data: products } = useLoaderData() as ProductsResponse;
+  const { attributes: products } = useLoaderData() as ProductsResponse;
 
   return (
     <div className="mt-12 grid gap-y-8">
       {products.map((product) => {
-        const { title, price, image, company, _id } = product.attributes;
+        const { title, price, image, company, _id } = product;
         const dollarsAmount = formatAsDollars(price);
         return (
           <Link key={_id} to={`/products/${_id}`}>

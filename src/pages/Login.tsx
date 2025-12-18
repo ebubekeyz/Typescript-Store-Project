@@ -22,7 +22,7 @@ export const action =
       );
 
       const username = response.data.user.username;
-      const jwt = response.data.jwt;
+      const jwt = response.data.token;
       store.dispatch(loginUser({ username, jwt }));
       return redirect("/");
     } catch (error) {

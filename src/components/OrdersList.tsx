@@ -1,6 +1,6 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData } from "react-router-dom";
 
-import { type OrdersResponse } from '@/utils';
+import { type OrdersResponse } from "@/utils";
 
 import {
   Table,
@@ -10,14 +10,14 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 
 function OrdersList() {
-  const { data: orders, meta } = useLoaderData() as OrdersResponse;
+  const { order: orders, meta } = useLoaderData() as OrdersResponse;
 
   return (
-    <div className='mt-16'>
-      <h4 className='mb-4 capitalize'>
+    <div className="mt-16">
+      <h4 className="mb-4 capitalize">
         total orders : {meta.pagination.total}
       </h4>
       <Table>
@@ -26,20 +26,26 @@ function OrdersList() {
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Address</TableHead>
-            <TableHead className='w-[100px]'>Products</TableHead>
-            <TableHead className='w-[100px]'>Cost</TableHead>
+            <TableHead className="w-[100px]">Products</TableHead>
+            <TableHead className="w-[100px]">Cost</TableHead>
             <TableHead>Date</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {orders.map((order) => {
-            const { name, address, numItemsInCart, orderTotal, createdAt } =
-              order.attributes;
+            const {
+              name,
+              address,
+              numItemsInCart,
+              orderTotal,
+              createdAt,
+              _id,
+            } = order;
             return (
-              <TableRow key={order.id}>
+              <TableRow key={_id}>
                 <TableCell>{name}</TableCell>
                 <TableCell>{address}</TableCell>
-                <TableCell className='text-center'>{numItemsInCart}</TableCell>
+                <TableCell className="text-center">{numItemsInCart}</TableCell>
                 <TableCell>{orderTotal}</TableCell>
                 <TableCell>{new Date(createdAt).toDateString()}</TableCell>
               </TableRow>
